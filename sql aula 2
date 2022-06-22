@@ -1,0 +1,33 @@
+ CREATE TABLE IF NOT EXISTS aluno ( -- Verifica se a tabela já existe no BD antes de criá-la
+id_aluno int not null auto_increment primary key,
+nome varchar(30) not null,
+telefone int not null
+);
+
+CREATE TABLE IF NOT EXISTS curso ( -- Verifica se a tabela já existe no BD antes de criá-la
+id_curso int not null auto_increment primary key,
+nome varchar(30) not null,
+dia varchar(30) not null,
+id_aluno int, 
+CONSTRAINT fk_AlunoCurso foreign key (id_aluno) references aluno (id_aluno)
+);
+
+describe curso;
+
+ALTER TABLE aluno
+CHANGE COLUMN telefone telefone_celular bigint not null;
+
+
+INSERT INTO aluno (nome, telefone_celular) -- Insere mais de um registro na tabela
+values
+("Leticia",11987479886),
+("Joenio", 81981479826),
+("Bruno", 51854948648),
+("Denise", 31985885648);
+
+INSERT INTO curso (nome, dia, id_aluno) -- Insere mais de um registro na tabela
+values
+("SQL","Segunda", 1),
+("Python", "Terça", 2),
+("GIT", "Quarta", 3),
+("Docker", "Quinta", 4);
